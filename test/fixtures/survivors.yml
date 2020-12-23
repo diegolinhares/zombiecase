@@ -6,8 +6,4 @@ daryl:
   age: 40
   name: Daryl Dixon
   gender: male
-  items:
-    - water: 1
-      food: 2
-      ammunition: 5
-      medicine: 2
+  items: { "water": 1, "food": 2, "ammunition": 5, "medication": 2 }
