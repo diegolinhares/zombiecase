@@ -7,3 +7,11 @@ daryl:
   name: Daryl Dixon
   gender: male
   items: { "water": 1, "food": 2, "ammunition": 5, "medication": 2 }
+
+carol:
+  latitude: -90.0
+  longitude: -180.0
+  age: 40
+  name: Carol Peletier
+  gender: female
+  items: { "water": 1, "food": 2, "ammunition": 1, "medication": 1 }

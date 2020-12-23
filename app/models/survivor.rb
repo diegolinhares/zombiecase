@@ -1,6 +1,8 @@
 class Survivor < ApplicationRecord
   attribute :items, Survivors::Items.to_type
 
+  has_many :infection_reports, dependent: :destroy
+
   enum gender: { male: 'male', female: 'female' }
 
   validates :name, :gender, presence: true

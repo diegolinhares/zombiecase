@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_190925) do
+ActiveRecord::Schema.define(version: 2020_12_23_011118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "infection_reports", force: :cascade do |t|
+    t.bigint "survivor_id", null: false
+    t.bigint "reported_survivor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reported_survivor_id"], name: "index_infection_reports_on_reported_survivor_id"
+    t.index ["survivor_id"], name: "index_infection_reports_on_survivor_id"
+  end
 
   create_table "survivors", force: :cascade do |t|
     t.decimal "latitude", precision: 10, scale: 6
@@ -26,4 +35,6 @@ ActiveRecord::Schema.define(version: 2020_12_22_190925) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "infection_reports", "survivors"
+  add_foreign_key "infection_reports", "survivors", column: "reported_survivor_id"
 end
