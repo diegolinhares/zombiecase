@@ -2,4 +2,4 @@
 
 daryl_report:
   survivor: daryl
-  infected: carol
+  reported_survivor: carol

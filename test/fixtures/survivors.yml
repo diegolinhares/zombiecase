@@ -1,5 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+rick:
+  latitude: -90.0
+  longitude: -180.0
+  age: 40
+  name: Rick Grimes
+  gender: male
+  items: { "water": 1, "food": 2, "ammunition": 1, "medication": 1 }
+
 daryl:
   latitude: -90.0
   longitude: -180.0

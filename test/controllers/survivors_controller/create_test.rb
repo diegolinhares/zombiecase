@@ -60,7 +60,7 @@ class SurvivorsControllerCreateTest < ActionDispatch::IntegrationTest
     assert_equal(
       {
         survivor: {
-          id: 75_949_320,
+          id: 868534033,
           latitude: '-90.0',
           longitude: '-180.0',
           age: 40,
