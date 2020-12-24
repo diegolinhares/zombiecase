@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InfectionReports
   class Create < Micro::Case
     attribute :survivor_id

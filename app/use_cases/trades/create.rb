@@ -29,7 +29,7 @@ module Trades
 
     private
 
-    attr_reader :survivor, :target_survivor, :survivor_stored_items, :target_survivor_stored_items, 
+    attr_reader :survivor, :target_survivor, :survivor_stored_items, :target_survivor_stored_items,
                 :offer_items, :for_items, :access_trade_items
 
     def access_survivors_inventory

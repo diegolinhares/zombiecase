@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InfectionReportsController < ApplicationController
   def create
     InfectionReports::Create
@@ -21,4 +23,3 @@ class InfectionReportsController < ApplicationController
     render_json(:unprocessable_entity, infection_report: json)
   end
 end
-  

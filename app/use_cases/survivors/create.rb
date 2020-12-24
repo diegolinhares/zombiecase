@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Survivors
   class Create < Micro::Case
     attribute :name

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Survivors
   class UpdateLocation < Micro::Case
     flow([Find, self])

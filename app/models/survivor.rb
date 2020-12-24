@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Survivor < ApplicationRecord
   attribute :items, Survivors::Items.to_type
 
@@ -19,7 +21,7 @@ class Survivor < ApplicationRecord
     greater_than_or_equal_to: -90,
     less_than_or_equal_to: 90
   }
-  
+
   validates :longitude, numericality: {
     only_decimal: true,
     greater_than_or_equal_to: -180,

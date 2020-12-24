@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TradesController < ApplicationController
   def create
     Trades::Create
@@ -20,4 +22,3 @@ class TradesController < ApplicationController
     render_json(:unprocessable_entity, errors: json)
   end
 end
-    

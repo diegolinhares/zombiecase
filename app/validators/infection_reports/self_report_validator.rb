@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InfectionReports
   class SelfReportValidator < ActiveModel::Validator
     def validate(record)

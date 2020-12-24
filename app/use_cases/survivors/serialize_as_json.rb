@@ -1,9 +1,13 @@
-class Survivors::SerializeAsJson < Micro::Case
-  attribute :survivor
+# frozen_string_literal: true
 
-  def call!
-    json = survivor.as_json.except('created_at', 'updated_at')
+module Survivors
+  class SerializeAsJson < Micro::Case
+    attribute :survivor
 
-    Success(result: { survivor_as_json: json })
+    def call!
+      json = survivor.as_json.except('created_at', 'updated_at')
+
+      Success(result: { survivor_as_json: json })
+    end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class SurvivorsControllerCreateTest < ActionDispatch::IntegrationTest
@@ -60,7 +62,7 @@ class SurvivorsControllerCreateTest < ActionDispatch::IntegrationTest
     assert_equal(
       {
         survivor: {
-          id: 868534033,
+          id: 868_534_033,
           latitude: '-90.0',
           longitude: '-180.0',
           age: 40,

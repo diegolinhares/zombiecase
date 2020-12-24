@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Survivors
   class Find < Micro::Case
     attribute :survivor_id
