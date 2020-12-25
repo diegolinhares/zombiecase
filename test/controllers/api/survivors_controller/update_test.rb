@@ -10,8 +10,8 @@ module Api
       put api_survivor_url(id: 1,
                            params: {
                              survivor: {
-                               'latitude' => -100.00,
-                               'longitude' => -190.00
+                               latitude: -100.00,
+                               longitude: -190.00
                              }
                            })
 
@@ -19,7 +19,7 @@ module Api
 
       assert_equal(
         {
-          survivor: {
+          errors: {
             id: 'not found'
           }
         },
@@ -31,8 +31,8 @@ module Api
       put api_survivor_url(id: survivors(:daryl).id,
                            params: {
                              survivor: {
-                               'latitude' => 'nine degrees',
-                               'longitude' => -190.00
+                               latitude: 'nine degrees',
+                               longitude: -190.00
                              }
                            })
 
@@ -54,8 +54,8 @@ module Api
       put api_survivor_url(id: survivors(:daryl).id,
                            params: {
                              survivor: {
-                               'latitude' => -70.00,
-                               'longitude' => -170.00
+                               latitude: -70.00,
+                               longitude: -170.00
                              }
                            })
 

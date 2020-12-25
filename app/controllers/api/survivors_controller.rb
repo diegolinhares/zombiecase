@@ -40,7 +40,7 @@ module Api
     end
 
     def render_not_found_survivor
-      render_json(:not_found, survivor: { id: 'not found' })
+      render_json(:not_found, errors: { id: 'not found' })
     end
   end
 end
