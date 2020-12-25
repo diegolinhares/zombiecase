@@ -8,9 +8,8 @@ class ReportsSerializer
 
   def links
     [api_reports_infected_url,
-      api_reports_non_infected_url,
-      api_reports_inventories_overview_url,
-      api_reports_resources_lost_url]
+     api_reports_non_infected_url,
+     api_reports_inventories_overview_url,
+     api_reports_resources_lost_url]
   end
-  
 end

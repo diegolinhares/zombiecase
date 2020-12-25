@@ -7,9 +7,9 @@ Rails.application.routes.draw do
         resources :infection_reports, only: [:create]
         resources :trades, only: [:create]
       end
-    
+
       resources :reports, only: [:index]
-    
+
       namespace :reports do
         resource :infected, only: [:show]
         resource :non_infected, only: [:show]
