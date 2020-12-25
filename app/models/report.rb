@@ -5,7 +5,7 @@ class Report
     {
       details: 'This number represents the percentage of infected survivors ' \
                'in relation to the total of registered survivors.',
-      value: infected_percent
+      value: infected_percent.round(2)
     }
   end
 
@@ -13,7 +13,7 @@ class Report
     {
       details: 'This number represents the percentage of non infected survivors ' \
                'in relation to the total of registered survivors.',
-      value: 1 - infected_percent
+      value: (1 - infected_percent).round(2)
     }
   end
 
@@ -44,7 +44,7 @@ class Report
   end
 
   def self.infected_percent
-    (InfectionReport.count / Survivor.count.to_f).round(2)
+    (InfectionReport.count / Survivor.count.to_f)
   end
 
   def self.sum_non_infected_survivors_items_by_type
