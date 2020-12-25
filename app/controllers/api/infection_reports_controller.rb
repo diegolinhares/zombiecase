@@ -5,7 +5,7 @@ module Api
     def create
       InfectionReports::Create
         .call(survivor_id: params[:survivor_id], params: infection_report_params)
-        .then(InfectionReports::SerializeAsJson)
+        .then(InfectionReports::SerializeAsJson, serializer: InfectionReportsSerializer)
         .on_success { |result| render_created_infection_report(result) }
         .on_failure(:invalid_infection_report) { |data| render_unprocessable_infection_report(data[:infection_report]) }
     end
@@ -17,11 +17,11 @@ module Api
     end
 
     def render_created_infection_report(result)
-      render_json(:created, survivor: result[:infection_report_as_json])
+      render_json(:created, result[:infection_report_as_json])
     end
 
     def render_unprocessable_infection_report(json)
-      render_json(:unprocessable_entity, infection_report: json)
+      render_json(:unprocessable_entity, errors: json)
     end
   end
 end

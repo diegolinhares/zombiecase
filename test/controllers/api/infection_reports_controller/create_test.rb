@@ -7,10 +7,10 @@ module Api
     include RequestHelper
 
     test 'should respond with unprocessable_entity status when survivor reports itself' do
-      post api_survivor_infection_reports_url(survivor_id: survivor_id,
+      post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
                                               params: {
-                                                'infection_report': {
-                                                  'infected_id' => survivor_id
+                                                infection_report: {
+                                                  infected_id: survivors(:daryl).id
                                                 }
                                               })
 
@@ -18,7 +18,7 @@ module Api
 
       assert_equal(
         {
-          infection_report: {
+          errors: {
             infected_id: ["can't flag yourself as an infected"]
           }
         },
@@ -27,10 +27,10 @@ module Api
     end
 
     test 'should respond with unprocessable_entity status when survivor has already been reported' do
-      post api_survivor_infection_reports_url(survivor_id: survivor_id,
+      post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
                                               params: {
-                                                'infection_report': {
-                                                  'infected_id' => already_reported_id
+                                                infection_report: {
+                                                  infected_id: survivors(:carol).id
                                                 }
                                               })
 
@@ -38,7 +38,7 @@ module Api
 
       assert_equal(
         {
-          infection_report: {
+          errors: {
             infected_id: ['has already been reported']
           }
         },
@@ -46,11 +46,11 @@ module Api
       )
     end
 
-    test 'should respond with created status when survivor has already been reported' do
-      post api_survivor_infection_reports_url(survivor_id: survivor_id,
+    test 'should respond with created status when survivor is reported' do
+      post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
                                               params: {
-                                                'infection_report': {
-                                                  'infected_id' => infected_id
+                                                infection_report: {
+                                                  infected_id: survivors(:rick).id
                                                 }
                                               })
 
@@ -58,25 +58,33 @@ module Api
 
       assert_equal(
         {
-          survivor: {
-            'survivor': { id: 75_949_319 },
-            'infected-survivor': { id: 868_534_032 }
-          }
+          data:
+           {
+             id: '139657800',
+             type: 'infection-reports',
+             relationships:
+                  {
+                    survivor:
+                     {
+                       data:
+                        {
+                          id: '75949319',
+                          type: 'survivor'
+                        }
+                     },
+                    'infected-survivor':
+                           {
+                             data:
+                              {
+                                id: '868534032',
+                                type: 'survivor'
+                              }
+                           }
+                  }
+           }
         },
         json_response
       )
-    end
-
-    def survivor_id
-      survivors(:daryl).id
-    end
-
-    def infected_id
-      survivors(:rick).id
-    end
-
-    def already_reported_id
-      survivors(:carol).id
     end
   end
 end
