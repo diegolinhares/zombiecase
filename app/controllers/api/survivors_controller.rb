@@ -7,7 +7,7 @@ module Api
     def create
       Survivors::Create
         .call(survivor_params.to_h)
-        .then(Survivors::SerializeAsJson)
+        .then(Survivors::SerializeAsJson, serializer: SurvivorSerializer)
         .on_success { |result| render_created_survivor(result) }
         .on_failure(:invalid_survivor) { |data| render_unprocessable_survivor(data[:survivor]) }
     end
@@ -15,7 +15,7 @@ module Api
     def update
       Survivors::UpdateLocation
         .call(survivor_id: params[:id], params: survivor_params)
-        .then(Survivors::SerializeAsJson)
+        .then(Survivors::SerializeAsJson, serializer: SurvivorSerializer)
         .on_success { |result| render_survivor_as_json(result) }
         .on_failure(:not_found_survivor) { |data| render_record_not_found(data[:survivor]) }
         .on_failure(:invalid_survivor) { |data| render_unprocessable_survivor(data[:survivor]) }
@@ -28,15 +28,15 @@ module Api
     end
 
     def render_survivor_as_json(result)
-      render_json(:ok, survivor: result[:survivor_as_json])
+      render_json(:ok, result[:survivor_as_json])
     end
 
     def render_created_survivor(result)
-      render_json(:created, survivor: result[:survivor_as_json])
+      render_json(:created, result[:survivor_as_json])
     end
 
     def render_unprocessable_survivor(json)
-      render_json(:unprocessable_entity, survivor: json)
+      render_json(:unprocessable_entity, errors: json)
     end
 
     def render_not_found_survivor

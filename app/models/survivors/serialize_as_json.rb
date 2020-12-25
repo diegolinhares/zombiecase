@@ -3,9 +3,10 @@
 module Survivors
   class SerializeAsJson < Micro::Case
     attribute :survivor
+    attribute :serializer
 
     def call!
-      json = survivor.as_json.except('created_at', 'updated_at')
+      json = serializer.new(survivor)
 
       Success(result: { survivor_as_json: json })
     end

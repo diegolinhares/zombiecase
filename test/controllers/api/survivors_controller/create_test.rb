@@ -9,14 +9,14 @@ module Api
     test 'should respond with unprocessable_entity status when receives invalid params' do
       post api_survivors_url, params: {
         survivor: {
-          'latitude' => -100.00,
-          'longitude' => -190.00,
-          'age' => 'fourthy',
-          'inventory' => {
-            'water' => -1,
-            'food' => -1,
-            'ammunition' => -1,
-            'medication' => -1
+          latitude: -100.00,
+          longitude: -190.00,
+          age: 'fourthy',
+          inventory: {
+            water: -1,
+            food: -1,
+            ammunition: -1,
+            medication: -1
           }
         }
       }
@@ -25,7 +25,7 @@ module Api
 
       assert_equal(
         {
-          survivor: {
+          errors: {
             name: ["can't be blank"],
             gender: ["can't be blank"],
             items: ['Water must be greater than or equal to 0',
@@ -44,16 +44,16 @@ module Api
     test 'should respond with created status when receives valid params' do
       post api_survivors_url, params: {
         survivor: {
-          'name' => 'Daryl Dixon',
-          'gender' => 'male',
-          'age' => 40,
-          'latitude' => -90.00,
-          'longitude' => -180.00,
-          'inventory' => {
-            'water' => 0,
-            'food' => 0,
-            'ammunition' => 0,
-            'medication' => 0
+          name: 'Daryl Dixon',
+          gender: 'male',
+          age: 40,
+          latitude: -90.00,
+          longitude: -180.00,
+          inventory: {
+            water: 0,
+            food: 0,
+            ammunition: 0,
+            medication: 0
           }
         }
       }
@@ -62,19 +62,25 @@ module Api
 
       assert_equal(
         {
-          survivor: {
-            id: 868_534_033,
-            latitude: '-90.0',
-            longitude: '-180.0',
-            age: 40,
-            name: 'Daryl Dixon',
-            gender: 'male',
-            items: {
-              water: 0,
-              food: 0,
-              medication: 0,
-              ammunition: 0
-            }
+          data:
+          {
+            id: '868534033',
+            type: 'survivor',
+            attributes:
+                  {
+                    name: 'Daryl Dixon',
+                    age: 40,
+                    gender: 'male',
+                    latitude: '-90.0',
+                    longitude: '-180.0',
+                    items:
+                    {
+                      water: 0,
+                      food: 0,
+                      medication: 0,
+                      ammunition: 0
+                    }
+                  }
           }
         },
         json_response

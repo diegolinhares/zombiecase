@@ -40,7 +40,7 @@ module Api
 
       assert_equal(
         {
-          survivor:
+          errors:
           {
             latitude: ['is not a number'],
             longitude: ['must be greater than or equal to -180']
@@ -63,18 +63,23 @@ module Api
 
       assert_equal(
         {
-          survivor: {
-            id: 75_949_319,
-            latitude: '-70.0',
-            longitude: '-170.0',
-            age: 40,
-            name: 'Daryl Dixon',
-            gender: 'male',
-            items: {
-              water: 1,
-              food: 2,
-              medication: 2,
-              ammunition: 5
+          data: {
+            id: '75949319',
+            type: 'survivor',
+            attributes:
+            {
+              name: 'Daryl Dixon',
+              age: 40,
+              gender: 'male',
+              latitude: '-70.0',
+              longitude: '-170.0',
+
+              items: {
+                water: 1,
+                food: 2,
+                medication: 2,
+                ammunition: 5
+              }
             }
           }
         },
