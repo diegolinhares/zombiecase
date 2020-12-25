@@ -5,6 +5,12 @@ module InfectionReports
     attribute :survivor_id
     attribute :params
 
+    flow([
+           CheckReportedSurvivor,
+           CheckSelfReporting,
+           self
+         ])
+
     def call!
       infection_report = InfectionReport.new(
         survivor_id: survivor_id,
