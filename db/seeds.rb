@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # The Walking Dead characters
-names = ['Rick Grimes', 'Daryl Dixon']
+names = ['Rick Grimes', 'Daryl Dixon', 'Abraham Ford']
 
 names.each do |name|
   Survivor.create(
