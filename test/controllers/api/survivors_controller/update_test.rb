@@ -13,7 +13,7 @@ module Api
                                latitude: -100.00,
                                longitude: -190.00
                              }
-                           })
+                           }), headers: json_api_headers
 
       assert_response :not_found
 
@@ -34,7 +34,7 @@ module Api
                                latitude: 'nine degrees',
                                longitude: -190.00
                              }
-                           })
+                           }), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -57,7 +57,7 @@ module Api
                                latitude: -70.00,
                                longitude: -170.00
                              }
-                           })
+                           }), headers: json_api_headers
 
       assert_response :ok
 

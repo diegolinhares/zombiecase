@@ -8,7 +8,7 @@ module Api
       include RequestHelper
 
       test 'should respond with ok status and show report links' do
-        get api_reports_inventories_overview_url
+        get api_reports_inventories_overview_url, headers: json_api_headers
 
         assert_response :ok
 

@@ -25,7 +25,7 @@ module Api
 
           }
         }
-      )
+      ), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -56,7 +56,7 @@ module Api
 
           }
         }
-      )
+      ), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -87,7 +87,7 @@ module Api
 
           }
         }
-      )
+      ), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -117,7 +117,7 @@ module Api
             }
           }
         }
-      )
+      ), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -130,21 +130,19 @@ module Api
     end
 
     test 'should respond with unprocessable_entity status when any of the items list is empty' do
-      post api_survivor_trades_url(
-        survivor_id: survivors(:daryl).id
-      ),
+      post api_survivor_trades_url(survivor_id: survivors(:daryl).id),
            params: {
-             'trade' => {
-               'offer' => {
-                 'items' => []
+             trade: {
+               offer:
+               {
+                 items: []
                },
-               'for' => {
-                 'survivor_id' => survivors(:rick).id,
-                 'items' => []
+               for: {
+                 survivor_id: survivors(:rick).id,
+                 items: []
                }
              }
-           },
-           as: :json
+           }, as: :json, headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -161,24 +159,23 @@ module Api
 
     test 'should respond with unprocessable_entity status when the item list has an invalid item' do
       post api_survivor_trades_url(
-        survivor_id: survivors(:daryl).id
-      ),
-           params: {
-             trade: {
-               offer: {
-                 items: {
-                   chocolate: 1
-                 }
-               },
-               for: {
-                 survivor_id: survivors(:rick).id,
-                 items: {
-                   coke: 2
-                 }
-               }
-             }
-           },
-           as: :json
+        survivor_id: survivors(:daryl).id,
+        params: {
+          trade: {
+            offer: {
+              items: {
+                chocolate: 1
+              }
+            },
+            for: {
+              survivor_id: survivors(:rick).id,
+              items: {
+                coke: 2
+              }
+            }
+          }
+        }
+      ), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -198,9 +195,7 @@ module Api
     end
 
     test 'should respond with ok status when trade is valid' do
-      post api_survivor_trades_url(
-        survivor_id: survivors(:daryl).id
-      ),
+      post api_survivor_trades_url(survivor_id: survivors(:daryl).id),
            params: {
              trade: {
                offer: {
@@ -215,8 +210,7 @@ module Api
                  }
                }
              }
-           },
-           as: :json
+           }, as: :json, headers: json_api_headers
 
       assert_response :ok
 

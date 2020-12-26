@@ -8,11 +8,12 @@ module Api
 
     test 'should respond with unprocessable_entity status when survivor reports itself' do
       post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
-                                              params: {
+                                              params:
+                                              {
                                                 infection_report: {
                                                   infected_id: survivors(:daryl).id
                                                 }
-                                              })
+                                              }), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -28,11 +29,12 @@ module Api
 
     test 'should respond with unprocessable_entity status when survivor has already been reported' do
       post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
-                                              params: {
+                                              params:
+                                              {
                                                 infection_report: {
                                                   infected_id: survivors(:carol).id
                                                 }
-                                              })
+                                              }), headers: json_api_headers
 
       assert_response :unprocessable_entity
 
@@ -48,11 +50,12 @@ module Api
 
     test 'should respond with created status when survivor is reported' do
       post api_survivor_infection_reports_url(survivor_id: survivors(:daryl).id,
-                                              params: {
+                                              params:
+                                              {
                                                 infection_report: {
                                                   infected_id: survivors(:rick).id
                                                 }
-                                              })
+                                              }), headers: json_api_headers
 
       assert_response :created
 

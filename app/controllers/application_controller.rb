@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
 
   private
 
-  REQUIRED_HEADERS = ['Accept', 'Content-Type'].freeze
+  REQUIRED_HEADERS = %w[Accept Content-Type].freeze
   MIME_TYPE_JSON_API = 'application/vnd.api+json'
 
   def verify_json_api_required_headers
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::API
 
       case required_header
       when 'Accept'
-        return render json: { error: 'Not Acceptable' }, status: :not_acceptable
+        render json: { error: 'Not Acceptable' }, status: :not_acceptable
       when 'Content-Type'
         render json: { error: 'Unsupported Media Type' }, status: :unsupported_media_type
       end
