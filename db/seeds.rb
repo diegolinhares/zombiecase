@@ -1,8 +1,20 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+# The Walking Dead characters
+names = ['Rick Grimes', 'Daryl Dixon']
+
+names.each do |name|
+  Survivor.create(
+    name: name,
+    age: 40,
+    gender: 'male',
+    latitude: -90.0,
+    longitude: -180.0,
+    items: {
+      'water': 1,
+      'food': 2,
+      'ammunition': 1,
+      'medication': 1
+    }
+  )
+end
