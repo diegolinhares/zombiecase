@@ -3,11 +3,11 @@
 module Api
   class InfectionReportsController < ApplicationController
     def create
-      InfectionReports::Create
-        .call(survivor_id: params[:survivor_id], params: infection_report_params)
-        .then(InfectionReports::SerializeAsJson, serializer: InfectionReportsSerializer)
-        .on_success { |result| render_created_infection_report(result) }
-        .on_failure(:invalid_infection_report) { |data| render_unprocessable_infection_report(data[:infection_report]) }
+      InfectionReports::Create.call(survivor_id: params[:survivor_id], params: infection_report_params) do |on|
+        on.then(InfectionReports::SerializeAsJson, serializer: InfectionReportsSerializer)
+        on.success { |result| render_created_infection_report(result) }
+        on.failure(:invalid_infection_report) { |data| render_unprocessable_infection_report(data[:infection_report]) }
+      end
     end
 
     private
